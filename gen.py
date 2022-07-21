@@ -43,13 +43,13 @@ train_datagen = ImageDataGenerator(
 # Vectorize Images in Training Directory
 train_generator = train_datagen.flow_from_directory(
         'train',           target_size=(160, 160),
-        batch_size=18,      class_mode='categorical')
+        batch_size=15,      class_mode='categorical')
 
 #Similarly generate validation set too called validation_generator
 
 # Train Model
 model.fit(
-        train_generator, steps_per_epoch=110,
+        train_generator, steps_per_epoch=133,
         epochs=20, callbacks=[checkpoint, stop], 
         validation_data=(x_val, y_val))
 
