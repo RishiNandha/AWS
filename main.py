@@ -12,8 +12,8 @@ l=["Cardboard", "Glass", "Metal", "Paper", "Plastic", "Mixed"]
 flag = 1
 while flag==1:
 	img = imread(input("\n\nEnter Full Address of Image to predict: "))
-	img = resize(img,(192,256))
-	img = img.reshape((1,192,256,3))
+	img = resize(img,(160,160))
+	img = img.reshape((1,160,160,3))
 	print(' ')
 	img = model.predict(img,verbose=0)
 	img=img.reshape((6,))

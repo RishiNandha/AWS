@@ -6,7 +6,7 @@ import cv2
 os.chdir('predb')
 
 y_val = np.array([]).reshape((0,6))
-x_val = np.array([]).reshape((0,192,256,3))
+x_val = np.array([]).reshape((0,160,160,3))
 
 def encode_class(x):
 	l = [0 for i in range(6)]
@@ -20,9 +20,9 @@ def load_data(name):
 	x=5
 
 	image = plt.imread(name)
-	image = cv2.resize(image,(192,256))
+	image = cv2.resize(image,(160,160))
 
-	x_val = np.append(x_val, image.reshape((1,192,256,3)),axis=0)
+	x_val = np.append(x_val, image.reshape((1,160,160,3)),axis=0)
 
 	if 'cardboard' in name:
 		x=0

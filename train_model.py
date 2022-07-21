@@ -14,7 +14,7 @@ y_val=pickle.load(open('y_val.bin','rb'))
 
 print('\n\nLoaded Prepared Data Successfully')
 
-layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(192,256,3),activation='relu'),
+layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(160,160,3),activation='relu'),
 		AveragePooling2D(pool_size=(2,2)),
 		Conv2D(36, kernel_size=(3,3),activation='relu'),  
 		MaxPooling2D(pool_size=(2,2)), 

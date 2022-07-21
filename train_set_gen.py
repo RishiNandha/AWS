@@ -4,7 +4,7 @@ import os
 import cv2
 
 y_train = np.array([]).reshape((0,6))
-x_train = np.array([]).reshape((0,192,256,3))
+x_train = np.array([]).reshape((0,160,160,3))
 
 def encode_class(x):
 	l = [0 for i in range(6)]
@@ -16,14 +16,24 @@ def append_data(directory, classification):
 	os.chdir(directory)
 	
 	y_temp = np.array([]).reshape((0,6))
-	x_temp = np.array([]).reshape((0,192,256,3))
+	x_temp = np.array([]).reshape((0,160,160,3))
 	
 	for i in os.listdir():
+		y_temp2 = np.array([]).reshape((0,6))
+		x_temp2 = np.array([]).reshape((0,160,160,3))
 		image = plt.imread(i)
-		image = cv2.resize(image,(192,256))
+		y=encode_class(classification)
+		
+		image = cv2.resize(image,(160,160))
+		x_temp2 = np.append(x_temp2, image.reshape((1,160,160,3)), axis=0)
+		y_temp2 = np.append(y_temp2, y,axis=0)
+		
+		image = cv2.flip(image,0)
+		x_temp2 = np.append(x_temp2, image.reshape((1,160,160,3)), axis=0)
+		y_temp2 = np.append(y_temp2, y,axis=0)
 
-		x_temp = np.append(x_temp, image.reshape((1,192,256,3)), axis=0)
-		y_temp = np.append(y_temp, encode_class(classification),axis=0)
+		x_temp = np.append(x_temp, x_temp2, axis=0)
+		y_temp = np.append(y_temp, y_temp2,axis=0)
 	
 	global x_train
 	global y_train
@@ -38,9 +48,9 @@ def append_data(directory, classification):
 
 print("\n \nPreparing Data:\n")
 
+append_data("train/metal",2)
 append_data("train/cardboard",0)
 append_data("train/glass",1)
-append_data("train/metal",2)
 append_data("train/paper",3)
 append_data("train/plastic",4)
 append_data("train/trash",5)
