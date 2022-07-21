@@ -22,7 +22,7 @@ layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(160,160,3),activation='relu
 		MaxPooling2D(pool_size=(2,2)), 
 		Conv2D(50, kernel_size=(3,3),activation='relu'),
 		Conv2D(50, kernel_size=(3,3),activation='relu'),
-		MaxPooling2D(pool_size(3,3)), 
+		MaxPooling2D(pool_size=(2,2)), 
 		Conv2D(50, kernel_size=(3,3),activation='relu'), 
 		Conv2D(50, kernel_size=(3,3),activation='relu'),  
 		MaxPooling2D(pool_size=(2,2)), 
