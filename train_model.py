@@ -14,21 +14,25 @@ y_val=pickle.load(open('y_val.bin','rb'))
 
 print('\n\nLoaded Prepared Data Successfully')
 
-layerz = [Conv2D(30, kernel_size=(5,5), input_shape=(192,256,3),activation='relu'),
+layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(192,256,3),activation='relu'),
 		AveragePooling2D(pool_size=(2,2)),
-		Conv2D(15, kernel_size=(3,3),activation='relu'), 
-		AveragePooling2D(pool_size=(2,2)),
-		Conv2D(15, kernel_size=(3,3),activation='relu'), 
-		AveragePooling2D(pool_size=(2,2)), 
+		Conv2D(36, kernel_size=(3,3),activation='relu'),  
+		MaxPooling2D(pool_size=(2,2)), 
+		Conv2D(50, kernel_size=(3,3),activation='relu'),  
+		MaxPooling2D(pool_size=(2,2)), 
+		Conv2D(50, kernel_size=(3,3),activation='relu'),
+		Conv2D(50, kernel_size=(3,3),activation='relu'),
+		MaxPooling2D(pool_size(3,3)), 
+		Conv2D(50, kernel_size=(3,3),activation='relu'), 
+		Conv2D(50, kernel_size=(3,3),activation='relu'),  
+		MaxPooling2D(pool_size=(2,2)), 
 		Flatten(), 
 		Dense(200, activation='relu'),
-		Dropout(0.1),
-		Dense(36, activation='relu'),
 		Dense(6,activation='sigmoid')]
 
 model=keras.Sequential(layerz)
 
-model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(learning_rate=0.000003), metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(learning_rate=0.00003), metrics=['accuracy'])
 
 print('\n \nTraining: \n \n')
 
@@ -38,7 +42,7 @@ stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=15)
 # model.load_weights('ckpt.hdf5')
 # USE ONLY IF CHECKPOINT EXISTS AND IS FROM THE SAME MODEL
 
-model.fit(x_train, y_train, epochs=250, batch_size = 18, shuffle=True, callbacks=[checkpoint, stop], validation_data=(x_val, y_val))
+model.fit(x_train, y_train, epochs=25, batch_size = 18, shuffle=True, callbacks=[checkpoint, stop], validation_data=(x_val, y_val))
 
 model.load_weights('ckpt.hdf5')
 
