@@ -20,7 +20,7 @@ layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(256,256,3),activation='relu
 		Flatten(), 
 		Dense(72, activation='relu'),
 		Dense(36, activation='relu'),
-		Dense(6,activation='sigmoid')]
+		Dense(6,activation='softmax')]
 batch=6
 model=keras.Sequential(layerz)
 model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(learning_rate=0.0000035*batch), metrics=['accuracy'])
@@ -35,10 +35,9 @@ stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=15)
 from keras.preprocessing.image import ImageDataGenerator
 # Generator Object with transformation settings
 train_datagen = ImageDataGenerator(
-        rescale=1./255,     shear_range=0.1,
+   	shear_range=0.1,	height_shift_range=0.2,
         zoom_range=0.2,     horizontal_flip=True,
-        vertical_flip=True, width_shift_range=0.2,
-        height_shift_range=0.2)
+        vertical_flip=True, width_shift_range=0.2)
 # Vectorize Images in Training Directory
 
 train_generator = train_datagen.flow_from_directory(
