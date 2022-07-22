@@ -5,6 +5,8 @@ import pickle
 x_val=pickle.load(open('x_val.bin','rb'))
 y_val=pickle.load(open('y_val.bin','rb'))
 
+# Rishi Model
+
 layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(256,256,3)), 
 		Conv2D(36, kernel_size=(3,3)),  
 		Conv2D(72, kernel_size=(3,3),activation='relu'),  
@@ -20,6 +22,17 @@ layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(256,256,3)),
 		Flatten(), 
 		Dense(100, activation='relu'),
 		Dense(6,activation='softmax')]
+
+# AM's model
+# layerz = [Conv2D(128,(3,3),input_shape=(256,256,3), activation='relu'),
+# 		MaxPooling2D(pool_size=2),
+# 		Conv2D(32,(3,3),activation='relu'),
+# 		MaxPooling2D(pool_size=2),
+# 		Flatten(),
+# 		Dense(512,activation='relu'),
+# 		Dropout(0.2),
+# 		Dense(6,activation='softmax')]
+
 batch=6
 model=keras.Sequential(layerz)
 model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(learning_rate=0.0000025*batch), metrics=['accuracy'])
