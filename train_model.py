@@ -17,16 +17,13 @@ layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(256,256,3),activation='relu
 		Conv2D(72, kernel_size=(3,3),activation='relu'), 
 		Conv2D(72, kernel_size=(3,3),activation='relu'),
 		MaxPooling2D(pool_size=(2,2)),
-		Conv2D(72, kernel_size=(3,3),activation='relu'), 
-		Conv2D(72, kernel_size=(3,3),activation='relu'),
-		Conv2D(72, kernel_size=(3,3),activation='relu'),    
-		MaxPooling2D(pool_size=(2,2)),  
 		Flatten(), 
 		Dense(72, activation='relu'),
+		Dense(36, activation='relu'),
 		Dense(6,activation='sigmoid')]
 batch=6
 model=keras.Sequential(layerz)
-model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(learning_rate=0.000005*batch), metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adam(learning_rate=0.0000035*batch), metrics=['accuracy'])
 
 print('\n \nTraining: \n \n')
 	

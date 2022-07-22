@@ -20,7 +20,7 @@ train_datagen = ImageDataGenerator(
         vertical_flip=True, width_shift_range=0.2,
         height_shift_range=0.2)
 # Vectorize Images in Training Directory
-batch=9
+batch=6
 
 train_generator = train_datagen.flow_from_directory(
         'train',           target_size=(256, 256),
