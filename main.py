@@ -2,7 +2,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 from tensorflow import keras
-from matplotlib.pyplot import imread
+from matplotlib.pyplot import imread, show, imshow
 from cv2 import resize
 import numpy as np
 
@@ -13,6 +13,8 @@ flag = 1
 while flag==1:
 	img = imread(input("\n\nEnter Full Address of Image to predict: "))
 	img = resize(img,(256,256))
+	imshow(img)
+	show()
 	img = img.reshape((1,256,256,3))
 	print(' ')
 	img = model.predict(img,verbose=0)

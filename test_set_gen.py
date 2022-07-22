@@ -37,7 +37,7 @@ def load_data(name):
 
 	y_test = np.append(y_test, encode_class(x),axis=0)
 
-for i in os.listdir()[::2]:
+for i in os.listdir():
 	load_data(i)
 
 print('\n',x_test.shape, '\t', y_test.shape)

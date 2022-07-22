@@ -4,10 +4,12 @@ import numpy as np
 import pickle
 x_val=(pickle.load(open('x_val.bin','rb')))
 y_val=pickle.load(open('y_val.bin','rb'))
+x_val = x_val[::5]
+y_val = y_val[::5]
 
 print('\n \nTraining: \n \n')
 	
-checkpoint = keras.callbacks.ModelCheckpoint('ckpt.hdf5', monitor='val_loss', verbose=1, save_best_only=True, mode='min')
+checkpoint = keras.callbacks.ModelCheckpoint('ckpt.hdf5', monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
 stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=15)
 
 model = keras.models.load_model("AWS")
@@ -19,7 +21,7 @@ train_datagen = ImageDataGenerator(
         zoom_range=0.2,     horizontal_flip=True,
         vertical_flip=True, width_shift_range=0.2)
 # Vectorize Images in Training Directory
-batch=18
+batch=12
 
 train_generator = train_datagen.flow_from_directory(
         'train',           target_size=(256, 256),
