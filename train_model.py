@@ -5,7 +5,7 @@ import pickle
 x_val=pickle.load(open('x_val.bin','rb'))
 y_val=pickle.load(open('y_val.bin','rb'))
 
-layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(300,300,3),activation='relu'), 
+layerz = [Conv2D(18, kernel_size=(5,5), input_shape=(256,256,3),activation='relu'), 
 		Conv2D(36, kernel_size=(3,3),activation='relu'),  
 		Conv2D(50, kernel_size=(3,3),activation='relu'),  
 		MaxPooling2D(pool_size=(2,2)), 
@@ -43,10 +43,10 @@ train_datagen = ImageDataGenerator(
         vertical_flip=True, width_shift_range=0.2,
         height_shift_range=0.2)
 # Vectorize Images in Training Directory
-batch=12
+batch=9
 
 train_generator = train_datagen.flow_from_directory(
-        'train',           target_size=(300, 300),
+        'train',           target_size=(256, 256),
         batch_size=batch,      class_mode='categorical')
 
 #Similarly generate validation set too called validation_generator
