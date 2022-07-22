@@ -4,7 +4,7 @@ import os
 import cv2
 
 y_train = np.array([]).reshape((0,6))
-x_train = np.array([]).reshape((0,160,160,3))
+x_train = np.array([]).reshape((0,300,300,3))
 
 def encode_class(x):
 	l = [0 for i in range(6)]
@@ -16,20 +16,20 @@ def append_data(directory, classification):
 	os.chdir(directory)
 	
 	y_temp = np.array([]).reshape((0,6))
-	x_temp = np.array([]).reshape((0,160,160,3))
+	x_temp = np.array([]).reshape((0,300,300,3))
 	
 	for i in os.listdir():
 		y_temp2 = np.array([]).reshape((0,6))
-		x_temp2 = np.array([]).reshape((0,160,160,3))
+		x_temp2 = np.array([]).reshape((0,300,300,3))
 		image = plt.imread(i)
 		y=encode_class(classification)
 		
-		image = cv2.resize(image,(160,160))
-		x_temp2 = np.append(x_temp2, image.reshape((1,160,160,3)), axis=0)
+		image = cv2.resize(image,(300,300))
+		x_temp2 = np.append(x_temp2, image.reshape((1,300,300,3)), axis=0)
 		y_temp2 = np.append(y_temp2, y,axis=0)
 		
 		image = cv2.flip(image,0)
-		x_temp2 = np.append(x_temp2, image.reshape((1,160,160,3)), axis=0)
+		x_temp2 = np.append(x_temp2, image.reshape((1,300,300,3)), axis=0)
 		y_temp2 = np.append(y_temp2, y,axis=0)
 
 		x_temp = np.append(x_temp, x_temp2, axis=0)
