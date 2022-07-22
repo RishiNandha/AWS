@@ -30,7 +30,7 @@ train_generator = train_datagen.flow_from_directory(
 # Train Model
 model.fit(
         train_generator, steps_per_epoch=1995//batch,
-        epochs=10, validation_data=(x_val,y_val), callbacks=[checkpoint])
+        epochs=100, validation_data=(x_val,y_val), callbacks=[checkpoint, stop])
 
 model.save("AWS")
 
