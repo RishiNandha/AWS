@@ -8,3 +8,7 @@ x_val.bin
 *.data-00000-of-00001
 *.pb
 AWS/keras_metadata.pb
+*.pb
+*.data-00000-of-00001
+*.index
+*.hdf5
