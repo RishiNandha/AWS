@@ -12,3 +12,7 @@ AWS/keras_metadata.pb
 *.data-00000-of-00001
 *.index
 *.hdf5
+*.pb
+*.pb
+*.index
+*.hdf5
